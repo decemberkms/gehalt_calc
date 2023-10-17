@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.title});
@@ -10,8 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final int _counter = 0;
-
+  final controller = TextEditingController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,16 +19,45 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              child: const Text('My'),
+      body: const Column(
+        children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            Expanded(
+              child: Text("Brutto", textAlign: TextAlign.center),
             ),
-            const Text(
-              'Hello World',
-            ),
-          ],
+            Expanded(
+              child: TextField(
+                obscureText: true,
+                // decoration: InputDecoration(
+                //   border: OutlineInputBorder(),
+                // ),
+              ),
+            )
+          ]),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [Text("Time: "), Text("Yearly")])
+        ],
+      ),
+    );
+  }
+}
+
+class ObscuredTextFieldSample extends StatelessWidget {
+  const ObscuredTextFieldSample({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      width: 250,
+      child: TextField(
+        obscureText: true,
+        decoration: InputDecoration(
+          border: OutlineInputBorder(),
+          labelText: 'Password',
         ),
       ),
     );
